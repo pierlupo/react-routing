@@ -1,71 +1,47 @@
 import { useEffect, useState } from "react";
 import { addContact, deleteContact, editContact, fetchContacts } from "./ContactsSlice"
-import ContactDisplay from "./components/ContactDisplay";
-import ContactForm from "./ContactFormPage";
+import ContactForm from "./ContactForm";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"
+import ContactDisplay from "./components/ContactDisplay"
 
-const ContactList = () => {
+const ContactsList = () =>  {
 
   const contacts = useSelector(state => state.contacts.contacts)
-  const [contactFormMode, setContactFormMode] = useState("")
-  const [selectedContact, setSelectedContact] = useState(undefined)
-  const dispatch = useDispatch()
+ 
 
-  const setSelectedContactAndContactFormMode = ({contact, mode}) => {
-    setSelectedContact(contact)
-    setContactFormMode(mode)
-    
-  }
+   return   (
 
-  useEffect(() => {
-    dispatch(fetchContacts())
-  }, [dispatch])
+        <>
 
-  const onAddContactHandler = async (contactValues) => {
-    await dispatch(addContact(contactValues))
-    setContactFormMode("")
-  }
-
-  const onEditContactHandler = async (contactValuesWithId) => {
-    await dispatch(editContact(contactValuesWithId))
-    setContactFormMode("")
-  }
-
-  const onDeleteContactHandler = async (contactId) => {
-    await dispatch(deleteContact(contactId))
-    setContactFormMode("")
-  }
-    return (
-      <>
-
-<div className="col-10 offset-1 bg-dark rounded text-light p-3">
+            <div className="col-6 offset-3 bg-dark rounded text-light p-3 mt-2">
             <div className="d-flex align-items-center">
               <h3>Contacts List</h3>
               <hr />
+              <Link to={`/contacts/add`} className=" ms-auto btn btn-outline-success rounded-circle p-1 px-2"><i className="bi bi-plus"></i></Link>
             
-            {contactFormMode === 'add' && 
+            {/* {contactFormMode === 'add' && 
             <ContactForm mode='add' onAdd={onAddContactHandler} />}
             
             {contactFormMode === 'edit' && 
             <ContactForm mode='edit' onEdit={onEditContactHandler} contactId={selectedContact.id} />}
             
             {contactFormMode === 'delete' && 
-            <ContactForm mode='delete' onDelete={onDeleteContactHandler} contactId={selectedContact.id} />}
+            <ContactForm mode='delete' onDelete={onDeleteContactHandler} contactId={selectedContact.id} />} */}
             
             
-             <button onClick={() => setSelectedContactAndContactFormMode({mode: "add"})} className="ms-2 btn btn-outline-success"><i className="bi bi-plus-circle"></i> Add</button>
-            </div>
-              <hr />
-              {contacts.length === 0 ?
+             {/* <button onClick={() => setSelectedContactAndContactFormMode({mode: "add"})} className="btn btn-outline-success mx-auto "><i className="bi bi-plus-circle"></i> Add</button> */}
+             {/* </div>
+              <hr /> */}
+              
+              </div>
+              {contacts.length === 0 ? 
               <p>Il n'y a pas de contact dans la base de données !</p> : 
-              (
-                <div className="mx-auto row row-cols-2 row-cols-md-3 row-cols-xl-4">
-                  {[...contacts].sort((a,b) => a.id.LoclaCompare(b.id)).map(c => <ContactDisplay contactId={c.id} key={c.id} />)}
-            </div>
-              )}
-          </div>
-      </>
+              [...contacts].sort((a, b) => a.id.localeCompare(b.id)).map(c => <ContactDisplay key={c.id} contactId={c.id} />)}
+              </div>
+
+        </>
     )
-  }
+}
   
-  export default ContactList
+  export default ContactsList

@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./routes/ErrorPage";
 import HomePage from "./routes/HomePage";
-import ContactForm from "./routes/contacts/ContactFormPage";
-import ContactList from "./routes/contacts/ContactsList";
+import ContactForm from "./routes/contacts/ContactForm";
+import ContactsList from "./routes/contacts/ContactsList";
 
 const router = createBrowserRouter([
   {
@@ -18,16 +18,18 @@ const router = createBrowserRouter([
 
       {
         path: "/contacts",
-        element: <ContactList />,
+        element: <ContactsList />
       },
-
       {
-        path: "/ContactForm",
+        path: "/contacts/add",
         element: <ContactForm />
       },
-
       {
-        path: "/Contact",
+        path: "/contacts/edit/:contactId",
+        element: <ContactForm />
+      },
+      {
+        path: "/contacts/delete/:contactId",
         element: <ContactForm />
       },
 

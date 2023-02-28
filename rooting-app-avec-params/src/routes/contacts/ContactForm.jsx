@@ -40,7 +40,7 @@ const ContactForm = ()=> {
         console.log(ContactValues);
 
         if (mode === 'add') {
-          await dispatch(addContact(contactId))
+          await dispatch(addContact(ContactValues))
           } else if (mode === 'edit') {
             await dispatch(editContact({id: contactId, ...ContactValues}))
           }
@@ -51,7 +51,7 @@ const ContactForm = ()=> {
 
     return (
         <>
-        <div className="col-6 offset-3 rounded bg-dark text-light p-3 mt-2">
+        <div className="col-6 offset-3 rounded bg-dark text-light p-3 mt-5">
         <h3>{mode.substring(0, 1).toUpperCase() + mode.substring(1).toLowerCase()}Contact</h3>
         <hr />
         <form onSubmit={submitFormHandler}>

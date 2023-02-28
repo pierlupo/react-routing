@@ -47,7 +47,7 @@ export const addContact = createAsyncThunk(
 )
 
 export const editContact = createAsyncThunk(
-  "contact/editContact",
+  "contacts/editContact",
   async ({id, ...ContactValues}) => {
     
     

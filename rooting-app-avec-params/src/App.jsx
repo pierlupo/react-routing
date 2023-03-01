@@ -1,15 +1,32 @@
 import './App.css';
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState, useNavigate  } from 'react';
+import { removeUser, signIn, signUp } from "./routes/auth/authSlice";
+//import { user } from "./components/ProtectedRoute"
+// import SignForm from './routes/SignFormPage';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from './routes/contacts/ContactsSlice';
 
 function App() {
+
+ const user = useSelector(state => state.auth.user)
   const dispatch = useDispatch()
 
   useEffect( () => {
     dispatch(fetchContacts())
   },[dispatch])
+
+  const [signFormMode, setSignFormMode] = useState("")
+
+  const onSigningHandler = async (credentials) => {
+    if (signFormMode === "Sign In") {
+      await dispatch(signIn(credentials))
+    } else if (signFormMode === "Sign Up") {
+      await dispatch(signUp(credentials))
+    }
+
+    setSignFormMode("")
+  }
 
   return (
           <div className="App">
@@ -21,9 +38,20 @@ function App() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
+            <div className="navbar-nav w-100">
               <NavLink className="nav-link" to="/">Home</NavLink>
               <NavLink className="nav-link" to="/contacts">Contacts List</NavLink>
+              {/* <NavLink className="nav-link" to={`/admin`}>Administration</NavLink> */}
+              
+             {user ? (
+              <NavLink className="nav-link ms-auto btn btn-secondary" to="/">Sign Out</NavLink>
+              ) : ( 
+              <>
+                <NavLink className="nav-link ms-auto btn btn-outline-info" to={`/Sign+Up`}>Register</NavLink>
+                <NavLink className="nav-link ms-2 btn btn-primary" to={`/Sign+In`}>Sign In</NavLink>
+              </>
+             )} 
+          
             </div>
           </div>
         </div>

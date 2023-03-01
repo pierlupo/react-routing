@@ -1,7 +1,7 @@
-import { useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams, useSearchParams } from "react-router-dom"
-import { addContact, deleteContact, editContact } from "./ContactsSlice"
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { addContact, deleteContact, editContact } from "./ContactsSlice";
 
 const ContactForm = ()=> {
     const{contactId} = useParams()
@@ -51,7 +51,7 @@ const ContactForm = ()=> {
 
     return (
         <>
-        <div className="col-6 offset-3 rounded bg-dark text-light p-3 mt-5">
+        <div className="col-4 offset-4 rounded bg-dark text-light p-3 mt-5">
         <h3>{mode.substring(0, 1).toUpperCase() + mode.substring(1).toLowerCase()}Contact</h3>
         <hr />
         <form onSubmit={submitFormHandler}>

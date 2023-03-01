@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 
@@ -19,9 +19,9 @@ const ContactDisplay = ({contactId}) => {
             <Link to={`/contacts/delete/${contactId}?mode=delete`} className="ms-2 btn btn-danger" ><i className="bi bi-trash"></i></Link>
           </div>
           <hr />
-          <ul>
-            <li><b>Email: </b> {contact.email}</li>
-            <li><b>Phone Number: </b> {contact.tel}</li>
+          <ul >
+            <li className=""><b>Email:</b> {contact.email}</li>
+            <li className=""><b>Phone Number:</b> {contact.tel}</li>
           </ul>
           <hr />
         </div>

@@ -1,4 +1,4 @@
-import { createBrowserRouter,redirect } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./routes/ErrorPage";
 import HomePage from "./routes/HomePage";
@@ -6,6 +6,7 @@ import ContactForm from "./routes/contacts/ContactForm";
 import ContactsList from "./routes/contacts/ContactsList";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminPage from "./routes/admin/adminPage";
+import SignForm from "./routes/SignFormPage";
 
 
 
@@ -47,10 +48,23 @@ const router = createBrowserRouter([
         element: <ContactForm />
       },
       {
+        path: "/Sign+Up",
+        element: <SignForm />
+      },
+      {
+        path: "/Sign+In",
+        element: <SignForm />
+      },
+      {
         path: "/admin",
-        element: <ProtectedRoute><AdminPage /></ProtectedRoute>
+        element: <ProtectedRoute roleChecked={"Admin"}><AdminPage /></ProtectedRoute>
+        // element: <AdminPage />
         // loader: () => authCheck('Admin')
-      }
+      },
+      // {
+      //   path: "/signIn",
+      //   element: <ProtectedRoute roleChecked={"Users"}><SignForm /></ProtectedRoute>
+      // },
 
     ],
 

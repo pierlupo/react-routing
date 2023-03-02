@@ -31,9 +31,10 @@ const SignForm = (props) => {
     emailRef.current.value = "";
     passwordRef.current.value = "";
 
-    if (mode === "in") {
+    if (mode === "Connexion") {
       await dispatch(signIn(credentials));
-    } else if (mode === "up") {
+      
+    } else if (mode === "Inscription") {
       await dispatch(signUp(credentials));
     }
   };
@@ -46,7 +47,7 @@ const SignForm = (props) => {
 
   return (
     <>
-      <div className="col-6 offset-3 bg-dark rounded">
+      <div className="col-3 offset-4 bg-dark rounded p-3 mt-2">
         <form onSubmit={submitFormHandler}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -75,7 +76,7 @@ const SignForm = (props) => {
           <div className="text-end">
             {/* <button className={`btn btn-${mode === 'Sign In' ? 'primary' : 'secondary'}`}>{mode}</button> */}
             <button
-              className={`btn btn-${mode === "in" ? "primary" : "secondary"}`}
+              className={`btn btn-${mode === "Inscription" ? "primary" : "secondary"}`}
             >
               {mode}
             </button>

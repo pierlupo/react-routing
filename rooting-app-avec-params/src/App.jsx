@@ -52,21 +52,21 @@ function App() {
                     className="nav-link ms-auto btn btn-secondary"
                     to="/"
                   >
-                    Sign Out
+                    Deconnexion
                   </NavLink>
                 ) : (
                   <>
                     <NavLink
                       className="nav-link ms-auto btn btn-outline-info"
-                      to={`/Sign+Up?mode=up`}
+                      to={`/Sign+Up?mode=Inscription`}
                     >
-                      Register
+                      Inscription
                     </NavLink>
                     <NavLink
                       className="nav-link ms-2 btn btn-primary"
-                      to={`/Sign+In?mode=in`}
+                      to={`/Sign+In?mode=Connexion`}
                     >
-                      Sign In
+                      Connexion
                     </NavLink>
                   </>
                 )}

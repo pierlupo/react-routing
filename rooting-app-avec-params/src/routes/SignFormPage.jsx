@@ -41,9 +41,10 @@ const SignForm = (props) => {
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+      if(mode ==="Connexion"){
+      navigate("/");}
     }
-  }, [user, navigate]);
+  }, [user, mode, navigate]);
 
   return (
     <>
